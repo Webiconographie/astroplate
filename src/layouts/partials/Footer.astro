@@ -7,35 +7,72 @@ import social from "@/config/social.json";
 import { markdownify } from "@/lib/utils/textConverter";
 
 const { footer }: { footer: { name: string; url: string }[] } = menu;
+const { pathname } = Astro.url;
 ---
 
-<footer class="bg-light dark:bg-darkmode-light">
-  <div class="container">
-    <div class="row items-center py-10">
-      <div class="mb-8 text-center lg:col-3 lg:mb-0 lg:text-left">
-        <Logo />
+{
+  pathname === "/" ? (
+    <footer class="py-8 border-t border-border/20">
+      <div class="container flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs font-primary font-light text-text/60 tracking-widest uppercase">
+        <div class="mb-4 md:mb-0">
+          © 2024 Marco Bernier — Cuisiner l'essentiel
+        </div>
+        <div class="flex space-x-6 md:space-x-8">
+          <a
+            href="https://instagram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-primary transition-colors duration-300"
+          >
+            Instagram
+          </a>
+          <a
+            href="https://www.linkedin.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-primary transition-colors duration-300"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="/privacy-policy"
+            class="hover:text-primary transition-colors duration-300"
+          >
+            Mentions Légales
+          </a>
+        </div>
       </div>
-      <div class="mb-8 text-center lg:col-6 lg:mb-0">
-        <ul>
-          {
-            footer.map((menu) => (
-              <li class="m-3 inline-block">
-                <a href={menu.url}>{menu.name}</a>
-              </li>
-            ))
-          }
-        </ul>
+    </footer>
+  ) : (
+    <footer class="bg-light dark:bg-darkmode-light">
+      <div class="container">
+        <div class="row items-center py-10">
+          <div class="mb-8 text-center lg:col-3 lg:mb-0 lg:text-left">
+            <Logo />
+          </div>
+          <div class="mb-8 text-center lg:col-6 lg:mb-0">
+            <ul>
+              {
+                footer.map((menu) => (
+                  <li class="m-3 inline-block">
+                    <a href={menu.url}>{menu.name}</a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+          <div class="mb-8 text-center lg:col-3 lg:mb-0 lg:mt-0 lg:text-right">
+            <Social source={social.main} className="social-icons" />
+          </div>
+        </div>
       </div>
-      <div class="mb-8 text-center lg:col-3 lg:mb-0 lg:mt-0 lg:text-right">
-        <Social source={social.main} className="social-icons" />
+      <div class="border-t border-border py-7 dark:border-darkmode-border">
+        <div
+          class="container text-center text-text-light dark:text-darkmode-text-light"
+        >
+          <p set:html={markdownify(config.params.copyright)} />
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="border-t border-border py-7 dark:border-darkmode-border">
-    <div
-      class="container text-center text-text-light dark:text-darkmode-text-light"
-    >
-      <p set:html={markdownify(config.params.copyright)} />
-    </div>
-  </div>
-</footer>
+    </footer>
+  )
+}
