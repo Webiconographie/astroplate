@@ -3,17 +3,12 @@
     {
       "name": "facebook",
       "icon": "FaFacebook",
-      "link": "https://www.facebook.com/"
+      "link": "https://www.facebook.com/marco.bernier.35"
     },
     {
-      "name": "x",
-      "icon": "FaXTwitter",
-      "link": "https://x.com/"
-    },
-    {
-      "name": "github",
-      "icon": "FaGithub",
-      "link": "https://www.github.com/"
+      "name": "instagram",
+      "icon": "FaInstagram",
+      "link": "https://www.instagram.com/marcobernier_off/"
     },
     {
       "name": "linkedin",
